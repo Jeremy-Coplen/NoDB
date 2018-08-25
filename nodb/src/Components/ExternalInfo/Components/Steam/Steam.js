@@ -10,7 +10,8 @@ class Steam extends Component {
         super(props)
 
         this.state = {
-            achievements: []
+            achievements: [],
+            userInput: ""
         }
     }
 
@@ -25,12 +26,49 @@ class Steam extends Component {
             this.setState({
                 achievements: arr
             })
-        })        
+        })
+    }
+
+    updateInput(val) {
+        this.setState({
+            userInput: val
+        }, () => this.searchAchievement(this.state.userInput))
+    }
+
+    searchAchievement(text) {
+        const newText = text.toLowerCase()
+        const arr = []
+        const filterArr = this.state.achievements.filter(achievement => {
+            let newDisplayName = achievement.displayName.toLowerCase()
+            if(newDisplayName.includes(newText)) {
+                return achievement
+            }
+        })
+        if(text === "") {
+            axios.get(`http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key=${keys.steamApiKey}&appid=730`)
+            .then(res => {
+                for(var i = 0; i <= 9; i++) {
+                    arr.push(res.data.game.availableGameStats.achievements[i])
+                }
+    
+                this.setState({
+                    achievements: arr
+                })
+            })
+        }
+        else {
+            this.setState({
+                achievements: filterArr
+            })
+        }
+    }
+
+    removeAchievement(id) {
+        axios.delete()
     }
 
     render() {
         let achievement = this.state.achievements.map((achievement, i) => {
-
             return(
                 <DisplayAchievements key={i} displayName={achievement.displayName} description={achievement.description}/>
             )
@@ -38,8 +76,10 @@ class Steam extends Component {
         return (
             <div>
                 <div>
-                    <input type="text"/>
-                    <button>Find Achievement</button>
+                    <input type="text"
+                    placeholder="Find achievement"
+                    onChange={(e) => this.updateInput(e.target.value)}
+                    value={this.state.userInput}/>
                 </div>
                 {achievement}
             </div>
