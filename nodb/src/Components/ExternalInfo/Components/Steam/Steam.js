@@ -29,6 +29,20 @@ class Steam extends Component {
         })
     }
 
+    resetAchievements() {
+        const arr = []
+        axios.get(`http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key=${keys.steamApiKey}&appid=730`)
+        .then(res => {
+            for(var i = 0; i <= 9; i++) {
+                arr.push(res.data.game.availableGameStats.achievements[i])
+            }
+
+            this.setState({
+                achievements: arr
+            })
+        })
+    }
+
     updateInput(val) {
         this.setState({
             userInput: val
@@ -76,8 +90,10 @@ class Steam extends Component {
         return (
             <div>
                 <div>
+                    {/* <button
+                    onClick={() => this.resetAchievements()}>Reset Achievements</button> */}
                     <input type="text"
-                    placeholder="Find achievement"
+                    placeholder="Find Achievement"
                     onChange={(e) => this.updateInput(e.target.value)}
                     value={this.state.userInput}/>
                 </div>

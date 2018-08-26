@@ -14,6 +14,7 @@ class Pokemon extends Component {
         }
 
         this.searchMoves = this.searchMoves.bind(this)
+        this.resetMoves = this.resetMoves.bind(this)
     }
 
     componentDidMount() {
@@ -21,7 +22,22 @@ class Pokemon extends Component {
         axios.get("https://pokeapi.co/api/v2/pokemon/25")
         .then(res => {
             for(var i = 0; i <= 9; i++) {
-                arr.push(res.data.moves[i].move.name)
+                arr.push({id: i, name: res.data.moves[i].move.name})
+            }
+            this.setState({
+                sprite: res.data.sprites.front_default,
+                moves: arr
+
+            })
+        })
+    }
+
+    resetMoves() {
+        const arr = []
+        axios.get("https://pokeapi.co/api/v2/pokemon/25")
+        .then(res => {
+            for(var i = 0; i <= 9; i++) {
+                arr.push({id: i, name: res.data.moves[i].move.name})
             }
             this.setState({
                 sprite: res.data.sprites.front_default,
@@ -33,22 +49,24 @@ class Pokemon extends Component {
 
     searchMoves(text) {
         const newText = text.toLowerCase()
-        const arr = []
         const filterArr = this.state.moves.filter(move => {
-            let newMove = move.toLowerCase()
+            let newMove = move.name.toLowerCase()
             if(newMove.includes(newText)) {
                 return move
             }
         })
 
         if(text === "") {
-            axios.get("https://pokeapi.co/api/v2/pokemon/25")
+            const arr = []
+        axios.get("https://pokeapi.co/api/v2/pokemon/25")
         .then(res => {
             for(var i = 0; i <= 9; i++) {
-                arr.push(res.data.moves[i].move.name)
+                arr.push({id: i, name: res.data.moves[i].move.name})
             }
             this.setState({
+                sprite: res.data.sprites.front_default,
                 moves: arr
+
             })
         })
         }
@@ -59,10 +77,18 @@ class Pokemon extends Component {
         }
     }
 
+    // removeMove(id) {
+    //     let arr = [...this.state.moves]
+    //     arr.splice(id, 1)
+    //     this.setState({
+    //         moves: arr
+    //     })
+    // }
+
     render() {
         return (
             <div>
-                <DisplayPikachu sprite={this.state.sprite} moves={this.state.moves} searchMovesFn={this.searchMoves} />
+                <DisplayPikachu sprite={this.state.sprite} moves={this.state.moves} searchMovesFn={this.searchMoves} resetMovesFn={this.resetMoves} removeMoveFn={this.removeMove} />
             </div>
         )
     }

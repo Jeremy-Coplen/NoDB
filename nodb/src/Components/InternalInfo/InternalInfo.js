@@ -2,6 +2,8 @@ import React, { Component } from "react"
 import axios from "axios"
 import "./InternalInfo.css"
 
+import DisplayGames from "./DisplayGames"
+
 class InternalInfo extends Component {
     constructor(props) {
         super(props)
@@ -10,8 +12,11 @@ class InternalInfo extends Component {
             games: [],
             title: "",
             img: "",
-            hoursPlayed: ""
+            hoursPlayed: "",
         }
+
+        this.editGame = this.editGame.bind(this)
+        this.removeGame = this.removeGame.bind(this)
     }
 
     componentDidMount() {
@@ -57,14 +62,25 @@ class InternalInfo extends Component {
         })
     }
 
-    render() {
-        let games = this.state.games.map((game, i) => {
-            return (
-                <div key={i}>
-                    <h2>Game: {game.title} Game Art: <img src={game.img} alt={game.title}/> Hours Played: {game.hoursPlayed}</h2>
-                </div>
-            )
+    editGame(id, title, img, hoursPlayed) {
+        axios.put(`/api/games/${id}`, {title, img, hoursPlayed})
+        .then(res => {
+            this.setState({
+                games: res.data,
+            })
         })
+    }
+
+    removeGame(id) {
+        axios.delete(`/api/games/${id}`)
+        .then(res => {
+            this.setState({
+                games: res.data
+            })
+        })
+    }
+
+    render() {
         return (
             <div>
                 <div>
@@ -84,7 +100,17 @@ class InternalInfo extends Component {
                     onClick={() => this.addGame()}>Add game</button>
                 </div>
                 <div>
-                    {games}
+                    {
+                        this.state.games.map(game => (
+                            <DisplayGames id={game.id} 
+                            key={game.id} 
+                            title={game.title} 
+                            img={game.img} 
+                            hoursPlayed={game.hoursPlayed} 
+                            editGameFn={this.editGame} 
+                            removeGameFn={this.removeGame}/>
+                        ))
+                    }
                 </div>
             </div>
         )

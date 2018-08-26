@@ -23,7 +23,7 @@ module.exports = {
         const {title, img, hoursPlayed} = req.body
         gameID = null
         games.forEach((game, i) => {
-            if(game.id === req.params.id) {
+            if(game.id === Number(req.params.id)) {
                 gameID = i
             }
         })
@@ -39,7 +39,7 @@ module.exports = {
 
     delete: (req, res) => {
         games.forEach((game, i) => {
-            if(game.id === req.params.id) {
+            if(game.id === Number(req.params.id)) {
                 games.splice(i, 1)
             }
         })
