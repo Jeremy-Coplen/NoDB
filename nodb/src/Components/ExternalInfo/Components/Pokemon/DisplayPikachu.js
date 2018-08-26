@@ -20,17 +20,17 @@ class DisplayPikachu extends Component{
         }, () => this.props.searchMovesFn(this.state.userInput))
     }
 
-    // removeMove(id) {
-    //     this.props.removeMoveFn(id)
-    // }
+    removeMove(id) {
+        this.props.removeMoveFn(id)
+    }
     
     render() {
         const moves = this.props.moves.map((move, i) => {
             return (
                 <div key={i}>
                     <h3>{move.name}</h3>
-                    {/* <button
-                    onClick={() => this.removeMove(move.id)}>Delete</button> */}
+                    <button
+                    onClick={() => this.removeMove(move.id -1)}>Delete</button>
                 </div>
             )
         })
@@ -41,8 +41,8 @@ class DisplayPikachu extends Component{
                     <h2>Pikachu: </h2>
                     <img src={this.props.sprite} alt="Pikachu"/>
                 </div>
-                {/* <button
-                onClick={() => this.resetMoves()}>Reset Moves</button> */}
+                <button
+                onClick={() => this.resetMoves()}>Reset Moves</button>
                 <input type="text"
                     placeholder="Find a Move"
                     onChange={(e) => this.updateInput(e.target.value)}

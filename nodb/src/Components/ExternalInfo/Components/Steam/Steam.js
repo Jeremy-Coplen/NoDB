@@ -13,6 +13,7 @@ class Steam extends Component {
             achievements: [],
             userInput: ""
         }
+        this.removeAchievement = this.removeAchievement.bind(this)
     }
 
     componentDidMount() {
@@ -20,7 +21,7 @@ class Steam extends Component {
         axios.get(`http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key=${keys.steamApiKey}&appid=730`)
         .then(res => {
             for(var i = 0; i <= 9; i++) {
-                arr.push(res.data.game.availableGameStats.achievements[i])
+                arr.push({id: i, displayName: res.data.game.availableGameStats.achievements[i].displayName, description: res.data.game.availableGameStats.achievements[i].description })
             }
 
             this.setState({
@@ -34,7 +35,7 @@ class Steam extends Component {
         axios.get(`http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key=${keys.steamApiKey}&appid=730`)
         .then(res => {
             for(var i = 0; i <= 9; i++) {
-                arr.push(res.data.game.availableGameStats.achievements[i])
+                arr.push({id: i, displayName: res.data.game.availableGameStats.achievements[i].displayName, description: res.data.game.availableGameStats.achievements[i].description })
             }
 
             this.setState({
@@ -62,7 +63,7 @@ class Steam extends Component {
             axios.get(`http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key=${keys.steamApiKey}&appid=730`)
             .then(res => {
                 for(var i = 0; i <= 9; i++) {
-                    arr.push(res.data.game.availableGameStats.achievements[i])
+                    arr.push({id: i, displayName: res.data.game.availableGameStats.achievements[i].displayName, description: res.data.game.availableGameStats.achievements[i].description })
                 }
     
                 this.setState({
@@ -78,24 +79,28 @@ class Steam extends Component {
     }
 
     removeAchievement(id) {
-        axios.delete()
+        let arr = [...this.state.achievements]
+        arr.splice(id, 1)
+        this.setState({
+            achievements: arr
+        })
     }
 
     render() {
-        let achievement = this.state.achievements.map((achievement, i) => {
+        let achievement = this.state.achievements.map(achievement => {
             return(
-                <DisplayAchievements key={i} displayName={achievement.displayName} description={achievement.description}/>
+                <DisplayAchievements id={achievement.id} key={achievement.id} displayName={achievement.displayName} description={achievement.description} removeAchievementFn={this.removeAchievement}/>
             )
         })
         return (
             <div>
                 <div>
-                    {/* <button
-                    onClick={() => this.resetAchievements()}>Reset Achievements</button> */}
-                    <input type="text"
-                    placeholder="Find Achievement"
-                    onChange={(e) => this.updateInput(e.target.value)}
-                    value={this.state.userInput}/>
+                <button
+                        onClick={() => this.resetAchievements()}>Reset Achievements</button>
+                        <input type="text"
+                        placeholder="Find Achievement"
+                        onChange={(e) => this.updateInput(e.target.value)}
+                        value={this.state.userInput}/>
                 </div>
                 {achievement}
             </div>

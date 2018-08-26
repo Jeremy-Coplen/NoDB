@@ -15,6 +15,7 @@ class Pokemon extends Component {
 
         this.searchMoves = this.searchMoves.bind(this)
         this.resetMoves = this.resetMoves.bind(this)
+        this.removeMove = this.removeMove.bind(this)
     }
 
     componentDidMount() {
@@ -77,13 +78,13 @@ class Pokemon extends Component {
         }
     }
 
-    // removeMove(id) {
-    //     let arr = [...this.state.moves]
-    //     arr.splice(id, 1)
-    //     this.setState({
-    //         moves: arr
-    //     })
-    // }
+    removeMove(id) {
+        let arr = [...this.state.moves]
+        arr.splice(id, 1)
+        this.setState({
+            moves: arr
+        })
+    }
 
     render() {
         return (
