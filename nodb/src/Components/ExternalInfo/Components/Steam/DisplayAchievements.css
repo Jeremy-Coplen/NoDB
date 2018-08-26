@@ -1,0 +1,22 @@
+.achievement {
+    display: flex;
+    width: 80vw;
+    justify-content: center;
+    background-color: white;
+    opacity: .5;
+    box-shadow: 1px 1px 1px black;
+}
+
+.achievement_name {
+    margin-right: 15px;
+}
+
+.achievement_description {
+    margin-right: 15px;
+}
+
+.btn {
+    height: 23px;
+    margin-top: 18px;
+    margin-right: 10px;
+}

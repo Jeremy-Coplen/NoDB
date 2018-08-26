@@ -1,5 +1,16 @@
-let games = []
-let id = 0
+let games = [{
+    id: 0,
+    title: "CSGO",
+    img: "https://steamuserimages-a.akamaihd.net/ugc/857232612836470805/BE977F032855F301A599B0A24E772F081B334259/",
+    hoursPlayed: "1700"
+},
+{
+    id: 1,
+    title: "Terraria",
+    img: "https://505games.com/wp-content/uploads/Terraria-NG-752x430.jpg",
+    hoursPlayed: "384"
+}]
+let id = 2
 
 module.exports = {
     read: (req, res) => {

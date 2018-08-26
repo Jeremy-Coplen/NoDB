@@ -82,24 +82,24 @@ class InternalInfo extends Component {
 
     render() {
         return (
-            <div>
-                <div>
-                    <input type="text"
+            <div className="game_container">
+                <div className="game_add">
+                    <input className="input" type="text"
                         placeholder="Enter game title"
                         onChange={(e) => this.updateTitle(e.target.value)}
                         value={this.state.title} />
-                    <input type="text"
+                    <input className="input" type="text"
                         placeholder="Enter an image url"
                         onChange={(e) => this.updateImg(e.target.value)}
                         value={this.state.img} />
-                    <input type="text"
+                    <input className="input" type="text"
                         placeholder="Enter hours played"
                         onChange={(e) => this.updateHoursPlayed(e.target.value)}
                         value={this.state.hoursPlayed} />
                     <button
                     onClick={() => this.addGame()}>Add game</button>
                 </div>
-                <div>
+                <div className="game_display">
                     {
                         this.state.games.map(game => (
                             <DisplayGames id={game.id} 

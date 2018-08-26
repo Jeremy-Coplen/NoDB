@@ -1,0 +1,31 @@
+.pikachu_container {
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* .pikachu_img {
+    display: flex;
+} */
+
+.pikachu {
+    margin-top: 35px;
+}
+
+.pikachu_moves {
+    background: white;
+    display: flex;
+    justify-content: center;
+    width: 80vw;
+    opacity: .5;
+    box-shadow: 1px 1px 1px black;
+}
+
+.move_container {
+    overflow: auto;
+}
+
+.move_name {
+    margin-right: 15px;
+}

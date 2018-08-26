@@ -12,10 +12,10 @@ class DisplayAchievements extends Component {
 
     render() {
         return (
-            <div>
-                <h3>Name: {this.props.displayName}</h3>
-                <h3>Description: {this.props.description}</h3>
-                <button onClick={() => this.props.removeAchievementFn(this.props.id -1)}>Delete</button>
+            <div className="achievement">
+                <h3 className="achievement_name">Name: {this.props.displayName}</h3>
+                <h3 className="achievement_description">Description: {this.props.description}</h3>
+                <button className="btn" onClick={() => this.props.removeAchievementFn(this.props.id)}>Delete</button>
             </div>
         )
     }
