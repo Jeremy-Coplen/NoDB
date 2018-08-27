@@ -103,7 +103,8 @@ class InternalInfo extends Component {
                 <div className="game_display">
                     {
                         this.state.games.map(game => (
-                            <DisplayGames id={game.id}
+                            <DisplayGames
+                                id={game.id}
                                 key={game.id}
                                 title={game.title}
                                 img={game.img}
