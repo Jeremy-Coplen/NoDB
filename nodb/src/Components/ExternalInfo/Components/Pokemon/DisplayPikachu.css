@@ -1,29 +1,42 @@
 .pikachu_container {
-    height: 40vh;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* .pikachu_img {
+.pikachu_discription {
     display: flex;
-} */
+}
 
 .pikachu {
     margin-top: 35px;
+    font-size: 40px;
+}
+
+.pikachu_img {
+    margin-top: 8px;
 }
 
 .pikachu_moves {
-    background: white;
+    background:  rgba(255, 255, 255, 0.548);
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 55px;
     width: 80vw;
-    opacity: .5;
     box-shadow: 1px 1px 1px black;
+    font-size: 20px;
+}
+
+.moves {
+    margin-top: 15px;
+    font-size: 30px;
 }
 
 .move_container {
     overflow: auto;
+    margin-top: 10px;
 }
 
 .move_name {

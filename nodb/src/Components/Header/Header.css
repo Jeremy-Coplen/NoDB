@@ -1,7 +1,8 @@
 .header {
     background: rgb(75, 72, 72);
     height: 10vh;
-    width: 100vw;
+    width: 98.79vw;
     display: flex;
     justify-content: center;
+    font-size: 40px;
 }

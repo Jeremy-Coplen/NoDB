@@ -80,7 +80,7 @@ class Pokemon extends Component {
 
     removeMove(id) {
         let arr = [...this.state.moves]
-        arr.splice(id, 1)
+        arr = arr.filter(move => move.id !== id)
         this.setState({
             moves: arr
         })

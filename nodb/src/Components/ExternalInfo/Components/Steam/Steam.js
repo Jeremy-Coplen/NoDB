@@ -39,7 +39,8 @@ class Steam extends Component {
                 }
 
                 this.setState({
-                    achievements: arr
+                    achievements: arr,
+                    userInput: ""
                 })
             })
     }
@@ -80,7 +81,7 @@ class Steam extends Component {
 
     removeAchievement(id) {
         let arr = [...this.state.achievements]
-        arr.splice(id, 1)
+        arr = arr.filter(achievement => achievement.id !== id)
         this.setState({
             achievements: arr
         })
@@ -93,8 +94,8 @@ class Steam extends Component {
             )
         })
         return (
-            <div className="csgo_container">
-                <div>
+            <div>
+                <div className="csgo_container">
                     <button
                         onClick={() => this.resetAchievements()}>Reset Achievements</button>
                     <input type="text"
@@ -102,7 +103,10 @@ class Steam extends Component {
                         onChange={(e) => this.updateInput(e.target.value)}
                         value={this.state.userInput} />
                 </div>
-                {achievement}
+                <div className="achievement_container">
+                    {achievement}
+                </div>
+
             </div>
         )
     }

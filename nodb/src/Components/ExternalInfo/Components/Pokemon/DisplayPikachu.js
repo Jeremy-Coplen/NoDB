@@ -12,6 +12,9 @@ class DisplayPikachu extends Component {
 
     resetMoves() {
         this.props.resetMovesFn()
+        this.setState({
+            userInput: ""
+        })
     }
 
     updateInput(val) {
@@ -30,16 +33,16 @@ class DisplayPikachu extends Component {
                 <div className="pikachu_moves" key={i}>
                     <h3 className="move_name">{move.name}</h3>
                     <button className="btn"
-                        onClick={() => this.removeMove(move.id - 1)}>Delete</button>
+                        onClick={() => this.removeMove(move.id)}>Delete</button>
                 </div>
             )
         })
 
         return (
             <div className="pikachu_container">
-                <div className="pikachu_img">
+                <div className="pikachu_discription">
                     <h2 className="pikachu">Pikachu </h2>
-                    <img src={this.props.sprite} alt="Pikachu" />
+                    <img className="pikachu_img" src={this.props.sprite} alt="Pikachu" />
                 </div>
                 <div className="pikachu_input">
                     <button
@@ -49,7 +52,7 @@ class DisplayPikachu extends Component {
                         onChange={(e) => this.updateInput(e.target.value)}
                         value={this.state.userInput} />
                 </div>
-                <h2>Moves:</h2>
+                <h2 className="moves">Moves:</h2>
                 <div className="move_container">
                     {moves}
                 </div>

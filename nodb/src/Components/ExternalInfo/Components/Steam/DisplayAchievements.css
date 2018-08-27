@@ -1,9 +1,10 @@
 .achievement {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 80vw;
     justify-content: center;
-    background-color: white;
-    opacity: .5;
+    background-color: rgba(255, 255, 255, 0.548);
     box-shadow: 1px 1px 1px black;
 }
 
@@ -17,6 +18,5 @@
 
 .btn {
     height: 23px;
-    margin-top: 18px;
     margin-right: 10px;
 }

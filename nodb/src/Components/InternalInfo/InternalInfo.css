@@ -1,3 +1,7 @@
+.my_games {
+    font-size: 40px;
+}
+
 .game_container {
     margin-top: 20px;
     display: flex;

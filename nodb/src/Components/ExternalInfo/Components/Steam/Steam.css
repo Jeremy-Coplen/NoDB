@@ -1,7 +1,13 @@
 .csgo_container {
-    height: 40vh;
-    width: 100vw;
+    margin-top: 15px;
     display: flex;
-    flex-direction: column;;
+    justify-content: center;
+    overflow: auto;
+}
+
+.achievement_container {
+    margin-top: 10px;
+    display:flex;
+    flex-direction: column;
     align-items: center;
 }

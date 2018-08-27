@@ -63,26 +63,27 @@ class InternalInfo extends Component {
     }
 
     editGame(id, title, img, hoursPlayed) {
-        axios.put(`/api/games/${id}`, {title, img, hoursPlayed})
-        .then(res => {
-            this.setState({
-                games: res.data,
+        axios.put(`/api/games/${id}`, { title, img, hoursPlayed })
+            .then(res => {
+                this.setState({
+                    games: res.data,
+                })
             })
-        })
     }
 
     removeGame(id) {
         axios.delete(`/api/games/${id}`)
-        .then(res => {
-            this.setState({
-                games: res.data
+            .then(res => {
+                this.setState({
+                    games: res.data
+                })
             })
-        })
     }
 
     render() {
         return (
             <div className="game_container">
+                <h2 className="my_games">My Games</h2>
                 <div className="game_add">
                     <input className="input" type="text"
                         placeholder="Enter game title"
@@ -97,18 +98,18 @@ class InternalInfo extends Component {
                         onChange={(e) => this.updateHoursPlayed(e.target.value)}
                         value={this.state.hoursPlayed} />
                     <button
-                    onClick={() => this.addGame()}>Add game</button>
+                        onClick={() => this.addGame()}>Add game</button>
                 </div>
                 <div className="game_display">
                     {
                         this.state.games.map(game => (
-                            <DisplayGames id={game.id} 
-                            key={game.id} 
-                            title={game.title} 
-                            img={game.img} 
-                            hoursPlayed={game.hoursPlayed} 
-                            editGameFn={this.editGame} 
-                            removeGameFn={this.removeGame}/>
+                            <DisplayGames id={game.id}
+                                key={game.id}
+                                title={game.title}
+                                img={game.img}
+                                hoursPlayed={game.hoursPlayed}
+                                editGameFn={this.editGame}
+                                removeGameFn={this.removeGame} />
                         ))
                     }
                 </div>

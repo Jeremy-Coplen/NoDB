@@ -1,11 +1,11 @@
 .game_box {
     display: flex;
     justify-content: center;
-    background: white;
+    background:  rgba(255, 255, 255, 0.548);
     width: 80vw;
-    opacity: .5;
     box-shadow: 1px 1px 1px black;
     overflow: auto;
+    font-size: 20px;
 }
 
 .game_title, .game_img, .game_hours {
